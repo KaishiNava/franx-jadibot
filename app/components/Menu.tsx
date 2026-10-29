@@ -1,5 +1,6 @@
 'use client';
-import {useState} from 'react';\nimport {signOut} from '@/app/actions/auth';
+import {useState} from 'react';
+import {signOut} from '@/app/actions/auth';
 import Link from 'next/link';
 import {Menu as MenuIcon, X, LayoutDashboard, Settings, CircleUserRound, Shield, CircleHelp, LogOut} from 'lucide-react';
 export default function Menu({admin=false}:{admin?:boolean}){const [open,setOpen]=useState(false);return <div className="menu-wrap"><button aria-label="Buka menu" className="btn menu-trigger" onClick={()=>setOpen(v=>!v)}>{open?<X size={19}/>:<MenuIcon size={19}/>}</button>{open&&<><button className="menu-backdrop" aria-label="Tutup menu" onClick={()=>setOpen(false)}/><nav className="menu-pop"><Link href="/dashboard" onClick={()=>setOpen(false)}><LayoutDashboard/> Dashboard</Link><Link href="/settings" onClick={()=>setOpen(false)}><Settings/> Pengaturan</Link><Link href="/profile" onClick={()=>setOpen(false)}><CircleUserRound/> Profil</Link>{admin&&<Link href="/admin" onClick={()=>setOpen(false)}><Shield/> Admin Panel</Link>}<a href="#help" onClick={()=>setOpen(false)}><CircleHelp/> Bantuan</a><form action={signOut}><button type="submit"><LogOut/> Keluar</button></form></nav></>}</div>}
