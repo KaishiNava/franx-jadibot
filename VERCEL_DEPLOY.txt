@@ -1,0 +1,8 @@
+QUICK DEPLOY
+1. Upload/push all files in this folder to a GitHub repository.
+2. Import that repo at Vercel and deploy as a Next.js project.
+3. Add NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_SITE_URL to Vercel Environment Variables.
+4. Add https://YOUR-DEPLOYMENT.vercel.app/auth/callback to Supabase Auth URL Configuration > Redirect URLs.
+5. Redeploy after setting environment variables.
+
+Vercel currently hosts the web dashboard only. It does not start a persistent WhatsApp bot.
