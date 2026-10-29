@@ -1,8 +1,16 @@
-QUICK DEPLOY
-1. Upload/push all files in this folder to a GitHub repository.
-2. Import that repo at Vercel and deploy as a Next.js project.
-3. Add NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_SITE_URL to Vercel Environment Variables.
-4. Add https://YOUR-DEPLOYMENT.vercel.app/auth/callback to Supabase Auth URL Configuration > Redirect URLs.
-5. Redeploy after setting environment variables.
+FRANXX MD WEB - VERCEL DEPLOY
 
-Vercel currently hosts the web dashboard only. It does not start a persistent WhatsApp bot.
+1. Import this folder's contents into a GitHub repository. package.json must be at repository root.
+2. In Vercel > Project > Settings > Environment Variables, set:
+   NEXT_PUBLIC_SUPABASE_URL = your Supabase Project URL
+   NEXT_PUBLIC_SUPABASE_ANON_KEY = your Supabase anon/public key
+   NEXT_PUBLIC_SITE_URL = your deployed Vercel URL (for example https://your-project.vercel.app)
+3. Set variables for Production, Preview, and Development as needed.
+4. Redeploy after changing environment variables.
+5. In Supabase > Authentication > URL Configuration, set Site URL to your Vercel URL and add:
+   https://your-project.vercel.app/auth/callback
+   to Redirect URLs.
+
+The middleware now allows public pages to load if Supabase environment variables are missing, but login/register/authentication will not work correctly until valid values are set. If 500 persists, open Vercel > Project > Logs or Deployments > Functions/Runtime Logs and inspect the first error; do not share secret keys publicly.
+
+Bot runtime/WhatsApp connection is intentionally not enabled yet; it will need a VPS/runtime service later.
