@@ -45,3 +45,13 @@ A responsive Next.js + TypeScript website for testing account flows before a VPS
 - `Invalid API key`: use the Supabase **anon/public** key, not the service-role key.
 - Redirect/callback issue: add the exact Vercel URL to Supabase Auth redirect allowlist and update `NEXT_PUBLIC_SITE_URL`.
 - Email not arriving: check Supabase Auth email settings and spam; for a temporary test project, confirmation can be disabled.
+
+## Account roles and Admin Panel
+Admin authorization reads the server-managed Supabase `app_metadata.role` claim. Do not use editable `user_metadata` for authorization.
+1. Install dependencies: `npm install`.
+2. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` only in your trusted terminal environment.
+3. Run `node scripts/set-admin.mjs account@email.com admin` after that account has registered.
+4. Revoke with `node scripts/set-admin.mjs account@email.com user`.
+Never expose the service-role key in `NEXT_PUBLIC_*`, browser code, or a public repository.
+
+Dashboard banner and name-banner fields accept image URLs. The dashboard banner can also be set to video; it plays muted, inline, and loops. The WhatsApp pairing-number field stores configuration only; an actual pairing code/session requires a separately deployed WhatsApp runtime and secure session storage.
